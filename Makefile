@@ -14,6 +14,8 @@ vim_session:
 
 subdirs += models
 
+alldirs += $(subdirs)
+
 ######################################################################
 
 ### Makestuff
