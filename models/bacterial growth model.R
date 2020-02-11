@@ -1,5 +1,5 @@
 #install.packages('deSolve')
-require('deSolve')
+
 library("deSolve")
 
 # most initial parameters are up here, except infusion rate (since it's interesting to change)
