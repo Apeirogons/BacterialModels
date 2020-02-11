@@ -6,6 +6,4 @@ Also, expect scripts and dependencies in a bit. This repo was initially made for
 
 Also, I like the hack for rendering LaTeX on markdown files:
 
-<img src="https://render.githubusercontent.com/render/math?math=\frac{dN}{dt}\ =\ N V_{max} \frac{R}{R%2BK}">
-
-<img src="https://render.githubusercontent.com/render/math?math=\frac{dR}{dt}\ =\ -e\frac{dN}{dt}">
+$$\frac{dN}{dt}\ =\ V_{max}N\frac{R}{R+K}$$
