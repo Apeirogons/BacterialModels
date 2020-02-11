@@ -1,6 +1,6 @@
 # Working Title: The interplay between temperate phages and their hosts
 
-## Lysogeny improves the fitness of the bacterial host 
+## Lysogeny may carry benefits for the host
 Latent bacteriophage lambda exhibits low spontaneous induction rates (1). This low cost to an infected bacterium allows for the evolution of mutualistic behavior (2). One critically important mutualistic behavior is superinfection inhibition, which protects a lysogen from virulent strains of the same viral species which would otherwise lyse the cell (3). In phage lambda, virulence is controlled by the oLoR operator, which is repressed by the lysogeny-favoring CI protein. When another lambda phage infects a lysogen, the existing CI prevents the activation of the oLoR operator, preventing lysis of the lysogen. 
 
 Phages may also transfer or upregulate genes useful for their hosts. In environments containing antibiotics, phages may directly carry antibiotic resistance genes or transduce new ones from one bacterium to another. (4). For some phages of pathogens, various phage-encoded virulence factors have been shown to increase host virulence through upregulating genes such as those related to toxin production and biofilm formation (5). 
@@ -12,7 +12,7 @@ In lambda phages, under conditions of host starvation, the probability of lysoge
 However, lysogens do not always confer benefits to their hosts. In the lambda phage-E. coli system, if a lysogen detects DNA stress caused by UV radiation or other means, the DNA repair protein RecA will cleave and inactivate CI, causing the induction of lysis (7). In this case, assuming that this event was random and that there exist other susceptible hosts in the environment, the phage would find it advantageous to escape the stressed host and attempt to find a new one. 
 
 
-## Temperate phages decide on lytic or lysogenic dynamics based on population susceptibility
+## Deciding on lytic or lysogenic dynamics
 Phages entering the lysogenic cycle obtain the capacity for vertical transmission, but drastically reduce their capacity for horizontal transmission (9). Therefore, virulent strains of a bacteriophage may be evolutionarily favored when there exist a large number of susceptible bacteria (7). In contrast, lysogenic forms of phage are favored when most bacteria in a population are not susceptible, as the lysis of any remaining susceptible bacterium would be less valuable than being able to propagate alongside the bacterium.
 
 Phages infecting a cell may also be able to adapt their strategy based on observed features of the outside viral population. In spBeta phages, the propensity for undergoing lysogeny upon infection is dependent on a quorum-sensing (arbitrium) peptide released into the medium by lysogens (10). At high concentrations of arbitrium peptide, a receptor which would normally dimerize binds arbitrium instead. The dimeric form is normally responsible for transcriptionally activating a lysogeny-inhibiting system, thus, increased concentrations of arbitrium promote lysogeny. Similar systems have been found in found in other phage species (11). 
