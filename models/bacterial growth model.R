@@ -4,12 +4,13 @@ library("deSolve")
 
 # most initial parameters are up here, except infusion rate (since it's interesting to change)
 
-Vmax = 0.1
+V_max = 0.1
 e = 1e-1
-Kd = 2
+K_g = 2
 C = 0.0001 
 K_transfer = 0.10
 K_untransfer = 0.0001
+K_death = 0.01
 
 # functions for ODE solving here
 
@@ -31,10 +32,13 @@ f <- function(t, y, params){ # Main ODE system
   i = params[1]
   
   RN = R#/(N+S)
+  G <- V_max * monod(RN,K_g)*N
+  T_S <- K_transfer*(1-monod(RN,K_g))*N
+  T_N <- K_untransfer*monod(RN,K_g)*S
   
-  dNdt <- Vmax * monod(RN,Kd)*N - K_transfer*(1-monod(RN,Kd))*N + K_untransfer*S*monod(RN,Kd)
-  dRdt <- -e*Vmax*monod(RN,Kd)*N +i+ C*(N+R)
-  dSdt <- K_transfer*(1-monod(RN,Kd))*N - 0.01*S - K_untransfer*S*monod(RN,Kd)
+  dNdt <-  G - T_S + T_N
+  dRdt <- -e*G +i+ C*(N+R)
+  dSdt <- T_S - T_N - K_death*S  
   
   dNdt <- clamp(dNdt, lower=-N, upper=99999)
   dRdt <- clamp(dRdt, lower=-R, upper=99999)
