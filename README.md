@@ -1,6 +1,5 @@
 # BacterialModels
-For HTHSCI 3BM6S. Preliminary mathematical models for lytic-lysogeny decisions... or at least that's what it initially was supposed to be.
-Right now, the bacteria are more interesting.
+For HTHSCI 3BM6S. Preliminary mathematical models for lytic-lysogeny decisions... or that's what I think I'll be doing for poster day.
 
 ### TODO:
 * Replace spaces in file names with underscores
@@ -9,3 +8,4 @@ Right now, the bacteria are more interesting.
 * Update model to remove clipping
 * Use realistic rates
 * Various edits to explanations
+* Update various R syntax such as use of $
