@@ -34,6 +34,7 @@ $$T_{sg}$$ : Transfers from stationary to growth phase
 
 $$i$$ : infusion rate; amount of resource influx per unit time
 
+## Differentials
 
 $$\begin {aligned*}\\
 u(x,\ K)=\frac{x}{x+K} \\ \\
