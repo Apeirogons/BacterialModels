@@ -1,41 +1,46 @@
+## State Variables
+$$G$$: Number of growth phase bacteria
 
-## Differential Equations
+$$S$$: Number of stationary phase bacteria
 
-<img src="https://tex.s2cms.ru/svg/%20%5Cbegin%20%7Baligned*%7D%0A%20G%20%3D%20V_%7Bmax%7D%5Ccdot%20N%20%5Ccdot%20u(R%2C%20K_%7Bg%7D)%20%5C%5C%0A%20T_%7Bs%7D%20%3D%20K_%7BT%7D%5Ccdot%20N%20%5Ccdot%20(1-%20u(R%2C%20K_%7Bg%7D))%20%5C%5C%0A%20T_n%20%3D%20K_R%5Ccdot%20S%20%5Ccdot%20u%20(R%2CK_g)%20%5C%5C%20%5C%5C%0A%5Cfrac%7BdN%7D%7Bdt%7D%20%3D%20G%20-%20T_s%20%2B%20T_n%20%5C%5C%20%5C%5C%0A%5Cfrac%7BdR%7D%7Bdt%7D%20%3D%20-e%20%5Ccdot%20G%20%2B%20C%20%5Ccdot%20(G%2BR)%20%2B%20i%5C%5C%20%5C%5C%20%0A%5Cfrac%7BdS%7D%7Bdt%7D%20%3D%20T_s%20-%20T_n%20-%20K_d%20%5Ccdot%20S%20%5C%5C%20%5C%5C%0Au(x%2C%5C%20K)%3D%5Cfrac%7Bx%7D%7Bx%2BK%7D%0A%5Cend%20%7Baligned*%7D" alt=" \begin {aligned*}
-u(x,\ K)=\frac{x}{x+K}
+$$R$$: Amount of resources
 
- N = V_{max}\cdot G \cdot u(R, K_{g}) \\
- T_{s} = K_{T}\cdot G \cdot (1- u(R, K_{g})) \\
- T_n = K_R\cdot S \cdot u (R,K_g) \\ \\
+## Parameters 
+$$K_g$$: maximum per-bacterium growth rate
 
-\frac{dN}{dt} = N - T_s + T_n \\ \\
-\frac{dS}{dt} = T_s - T_n - K_d \cdot S \\ \\
+$$H_{g}$$ : concentration of resource resulting in half-maximal growth rate
 
-\frac{dR}{dt} = -e \cdot N + C \cdot (G+R) + i\\ \\ 
-\end {aligned*}" />
+$$K_{gs}$$: rate of conversion from growth to stationary phase
 
-### Base variables 
-<img src="https://tex.s2cms.ru/svg/%20V_%7Bmax%7D" alt=" V_{max}" />: maximum per-bacterium growth rate 
+$$H_{gs}$$ : concentration of resource resulting in half-maximal transfer rate from growth to stationary
 
-<img src="https://tex.s2cms.ru/svg/%20K_g%20" alt=" K_g " />: concentration of resource resulting in half-maximal growth rate
+$$K_{sg}$$: rate of conversion from stationary to growth phase
 
-<img src="https://tex.s2cms.ru/svg/%20K_t%20" alt=" K_t " />: Rate constant for conversion from growth to stationary phase
+$$H_{sg}$$ : concentration of resource resulting in half-maximal transfer rate from stationary to growth
 
-<img src="https://tex.s2cms.ru/svg/%20K_R%20" alt=" K_R " />: Rate constant for conversion from stationary to growth phase
+$$K_d$$ : rate of stationary phase bacterial death due to starvation
 
-<img src="https://tex.s2cms.ru/svg/%20K_d%20" alt=" K_d " />: Rate constant for stationary phase bacterial death due to starvation
+$$e$$ : efficiency constant; amount of resource to create a new bacterium
 
-<img src="https://tex.s2cms.ru/svg/%20e%20" alt=" e " />: efficiency constant; amount of resource to create a new bacterium
 
-<img src="https://tex.s2cms.ru/svg/%20C%20" alt=" C " />: constant resource consumption per bacterium
+## Explanation of composite variables
+$$u(x, K)$$ : common function used in Monod law
 
-<img src="https://tex.s2cms.ru/svg/%20i%20" alt=" i " />: infusion rate; amount of resource influx per unit time
+$$N$$ : New growth phase bacteria
 
-### Explanation of composite variables
-<img src="https://tex.s2cms.ru/svg/%20u(x%2C%20K)%20" alt=" u(x, K) " />: common function used in Monod law
+$$T_{gs}$$ : Transfers from growth to stationary phase
 
-<img src="https://tex.s2cms.ru/svg/%20G%20" alt=" N " />: New growth phase bacteria
+$$T_{sg}$$ : Transfers from stationary to growth phase
 
-<img src="https://tex.s2cms.ru/svg/%20T_s%20" alt=" T_s " />: Transfers from growth to stationary phase
+$$i$$ : infusion rate; amount of resource influx per unit time
 
-<img src="https://tex.s2cms.ru/svg/%20T_n%20" alt=" T_n " />: Transfers from stationary to growth phase
+
+$$\begin {aligned*}\\
+u(x,\ K)=\frac{x}{x+K} \\ \\
+N = K_{g} \cdot G \cdot u(R, H_{g})\\
+T_{gs} = K_{gs}\cdot G \cdot (1- u(R, H_{gs})) \\
+T_{sg} = K_{sg}\cdot S \cdot u (R,H_{sg})\\ \\
+\frac{dN}{dt} = N - T_{gs} + T_{sg} \\ \\
+\frac{dS}{dt} = T_{gs} - T_{sg} - K_{d} \cdot S \\ \\
+\frac{dR}{dt} = -e \cdot N  + i\ 
+\end {aligned*}$$
