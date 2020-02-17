@@ -35,12 +35,6 @@
 <img src="https://tex.s2cms.ru/svg/i" alt="i" /> : infusion rate; amount of resource influx per unit time
 
 
+## Differentials
+
 <img src="https://tex.s2cms.ru/svg/%5Cbegin%20%7Baligned*%7D%5C%5C%0Au(x%2C%5C%20K)%3D%5Cfrac%7Bx%7D%7Bx%2BK%7D%20%5C%5C%20%5C%5C%0AN%20%3D%20K_%7Bg%7D%20%5Ccdot%20G%20%5Ccdot%20u(R%2C%20H_%7Bg%7D)%5C%5C%0AT_%7Bgs%7D%20%3D%20K_%7Bgs%7D%5Ccdot%20G%20%5Ccdot%20(1-%20u(R%2C%20H_%7Bgs%7D))%20%5C%5C%0AT_%7Bsg%7D%20%3D%20K_%7Bsg%7D%5Ccdot%20S%20%5Ccdot%20u%20(R%2CH_%7Bsg%7D)%5C%5C%20%5C%5C%0A%5Cfrac%7BdN%7D%7Bdt%7D%20%3D%20N%20-%20T_%7Bgs%7D%20%2B%20T_%7Bsg%7D%20%5C%5C%20%5C%5C%0A%5Cfrac%7BdS%7D%7Bdt%7D%20%3D%20T_%7Bgs%7D%20-%20T_%7Bsg%7D%20-%20K_%7Bd%7D%20%5Ccdot%20S%20%5C%5C%20%5C%5C%0A%5Cfrac%7BdR%7D%7Bdt%7D%20%3D%20-e%20%5Ccdot%20N%20%20%2B%20i%5C%20%0A%5Cend%20%7Baligned*%7D" alt="\begin {aligned*}\\
-u(x,\ K)=\frac{x}{x+K} \\ \\
-N = K_{g} \cdot G \cdot u(R, H_{g})\\
-T_{gs} = K_{gs}\cdot G \cdot (1- u(R, H_{gs})) \\
-T_{sg} = K_{sg}\cdot S \cdot u (R,H_{sg})\\ \\
-\frac{dN}{dt} = N - T_{gs} + T_{sg} \\ \\
-\frac{dS}{dt} = T_{gs} - T_{sg} - K_{d} \cdot S \\ \\
-\frac{dR}{dt} = -e \cdot N  + i\ 
-\end {aligned*}" />
