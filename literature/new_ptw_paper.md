@@ -4,6 +4,6 @@ This explanation was found in a paper claiming to corroborate PtW results throug
 
 ## References
 * [Coutinho F, Silveira C, Gregoracci G, Thompson C, Edwards R, Brussaard C et al.](https://www.nature.com/articles/ncomms15955) Marine viruses discovered via metagenomics shed light on viral strategies throughout the oceans. Nature Communications. 2017;8(1).
-* Alrasheed H, Jin R, Weitz J. Caution in inferring viral strategies from abundance correlations in marine metagenomes. Nature Communications. 2019;10(1).
+* [Alrasheed H, Jin R, Weitz J. Caution in inferring viral strategies from abundance correlations in marine metagenomes](https://www.nature.com/articles/s41467-018-07950-z). Nature Communications. 2019;10(1).
 
 
