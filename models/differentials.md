@@ -41,7 +41,7 @@ u(x,\ K)=\frac{x}{x+K} \\ \\
 N = K_{g} \cdot G \cdot u(R, H_{g})\\
 T_{gs} = K_{gs}\cdot G \cdot (1- u(R, H_{gs})) \\
 T_{sg} = K_{sg}\cdot S \cdot u (R,H_{sg})\\ \\
-\frac{dN}{dt} = N - T_{gs} + T_{sg} \\ \\
+\frac{dG}{dt} = N - T_{gs} + T_{sg} \\ \\
 \frac{dS}{dt} = T_{gs} - T_{sg} - K_{d} \cdot S \\ \\
 \frac{dR}{dt} = -e \cdot N  + i\ 
 \end {aligned*}$$
