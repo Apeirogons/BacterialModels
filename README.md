@@ -1,4 +1,4 @@
-# BacterialModels
+# 3BM6-Modelling
 For HTHSCI 3BM6S. Preliminary mathematical models for lytic-lysogeny decisions... or that's what I think I'll be doing for poster day.
 
 ### TODO:
