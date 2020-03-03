@@ -1,4 +1,4 @@
-## This is 3BM6-Modelling.git 
+## This is 3BM6-Modelling
 
 current: target
 -include target.mk
