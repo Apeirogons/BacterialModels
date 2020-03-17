@@ -16,6 +16,8 @@ subdirs += models
 
 alldirs += $(subdirs)
 
+Ignore += $(subdirs)
+
 ######################################################################
 
 ### Makestuff
