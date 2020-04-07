@@ -37,8 +37,8 @@ out$time = out$time * multiplier
 ggplot(out, aes(time))+geom_line(aes(y=U/1000, color='Uninfected')) + geom_line(aes(y=L/1000, color='Lysogens'))+labs(title='Uninfected and Lysogen Concentration vs Time', x='Time (hr)', y='Bacterial Concentration (x 1000 bacteria/mL)') +theme_bw() 
 ggplot(out, aes(time))+geom_line(aes(y=P/100000, color='Phage'),color='GREEN') +labs(title='Phage Concentration vs Time', x='Time (hr)', y='Phage Concentration (x 100000 phages/mL)')  +theme_bw()  
 ggplot(out, aes(time))+geom_line(aes(y=R*1e+9, color='Resource'),color='PURPLE') +labs(title='Resource Concentration vs Time', x='Time (hr)', y='Glucose Concentration (ng/mL)') + coord_trans(y="log10")+ theme_bw() 
-ggplot(out, aes(time))+geom_line(aes(y=phi_moi(K_a,P,h,K), color='Probability of Lysogeny'),color='MAGENTA') +labs(title='Probability of Lysogeny vs Time', x='Time (hr)', y='Probability of Lysogeny')+ theme_bw() 
+ggplot(out, aes(time))+geom_line(aes(y=phi_moi(K_a,P,K), color='Probability of Lysogeny'),color='MAGENTA') +labs(title='Probability of Lysogeny vs Time', x='Time (hr)', y='Probability of Lysogeny')+ theme_bw() 
 
 # The probability of lysogeny for 1e+9 bacteria/mL.
-print(phi_moi(K_a, 1e+9,h,K))
+print(phi_moi(K_a, 1e+9,K))
 

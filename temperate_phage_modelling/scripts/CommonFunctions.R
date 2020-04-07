@@ -13,7 +13,7 @@ hill = function(N, K){ # Hill function used in MOI model.
   return (N/(N + K))
 }
 
-phi_moi <- function(K_a, P, h, K){ # h, K are parameters for the Hill function
+phi_moi <- function(K_a, P, K){ # K is parameter for the Hill function
   total = 0
   lambda = K_a*P
   for(N in 1:20){
@@ -32,7 +32,7 @@ f <- function(t, y, params){ # Main system for basic model
    
   moi=params['MOI']
   if(moi){
-  phi = phi_moi(K_a, P, h, K)}
+  phi = phi_moi(K_a, P, K)}
   
   N_U = V_U*U*m(R, H)
   N_L = V_L*L*m(R, H)
