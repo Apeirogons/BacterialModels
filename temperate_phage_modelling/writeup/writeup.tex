@@ -96,7 +96,7 @@ There exist many models of bacterial growth, but all choices of models should in
 
 Bacterial growth rates should be a monotonically increasing function of resources. ($\frac{dB}{dR} \geq 0$). This is because bacteria grow more slowly when there are fewer resources available for their growth. 
 
-There should exist a maximal bacterial growth rate ($V$), which is achieved when resource levels are high. (as $R \rightarrow \infty,  \frac{dB}{dR} \rightarrow V$). This is because the rate of bacterial growth cannot increase indefinitely as extracellular resources increase.
+There should exist a maximal bacterial growth rate ($V$), which is achieved when resource levels are high. (as $R \rightarrow \infty,  \\ \frac{dB}{dR} \rightarrow V$). This is because the rate of bacterial growth cannot increase indefinitely as extracellular resources increase.
 
 Bacterial resource utilization should increase as the bacterial growth rate increases. This is because the resources for bacterial growth are derived from the environment.
 
@@ -257,7 +257,7 @@ The basic model may be modified by tracking $A$, adding this differential, and a
 
 \item $V_L$: Set to $V_U/2$ (significantly slower than $V_U$).
 
-\item $H$:$15 \times 10^{-9} - 35 \times 10^{-9}$ (g/mL). Upper bound is the $K_s$ for \textit{Escherichia coli}, while lower bound is the $K_s$ for \textit{Chelatobacter heintzii} (Füchslin et al., 2011). 
+\item $H$: $15 \times 10^{-9} - 35 \times 10^{-9}$ (g/mL). Upper bound is the $K_s$ for \textit{Escherichia coli}, while lower bound is the $K_s$ for \textit{Chelatobacter heintzii} (Füchslin et al., 2011). 
 
 \item $e$: $5.98\times 10^{-13} - 5.4 \times 10^{-12}$ g/bacterium. Lower bound from estimate that $2 \times 10^9$ molecules of glucose required per cell (Phillips $\&$ Milo, 2009).  Upper bound from estimate that $1.8 \times 10^{10}$ molecules of glucose required per cell (Allen $\&$ Waclaw, 2018). 
 \end{itemize}
@@ -292,7 +292,7 @@ The basic model may be modified by tracking $A$, adding this differential, and a
 
 \subsection{Regarding the multiplicity of infection model}
 \begin{itemize}
-\item $K$: 1.80 (unitless). Determined by Zeng et al., 2010. Note: h determined by Zeng et al. not used as it cancels out of the equation. 
+\item $K$: 1.80 (unitless). Determined by Zeng et al., 2010. Note: h determined by Zeng et al. not used as it cancels out of the equation. This value is similar to the value I obtained by curve fitting (with the functional form $\frac{N}{N+K}$) with values visually estimated from figure 2C. 
 
 \item Lysis time: 0.75 hr, for the $\lambda$ - \textit{E. coli} system (Ryan $\&$ Rutenberg, 2007). 
 \end{itemize}
@@ -447,9 +447,7 @@ As there exist few uninfected bacteria in the population after the lysogen takeo
 \end{center}
 meaning that the VMR is approximately linear with respect to r, which I estimate can span multiple orders of magnitude depending on conditions. Additionally, the VMR further depends on $K_a$, which also may span multiple orders of magnitude. While most of the simulations observed showed VMRs less than 1, VMRs greater than 1 have been observed.
 
-How accurate were the predictions in this case?
-
-There are essentially 0 uninfected bacteria at equilibrium, as predicted. The estimated phage concentration of 26582.56 phages/mL was the same as the actual phage concentration, while the estimated lysogen concentration was significantly lower than the actual phage concentration (549288.4 estimated vs 625991.1 actual bacteria/mL). The resource concentration was slightly lower than predicted ($5.85 \times 10^{-12}$ estimated vs $5.14 \times 10^{-12}$ actual), although these errors were all in the expected direction. The predicted VMR of 0.048 was similar to the actual VMR of 0.042, which is likely because both lysogen predictions and phage predictions are relatively close to their actual value.
+How accurate were the predictions in this case? There are essentially 0 uninfected bacteria at equilibrium, as predicted. The estimated phage concentration of 26582.56 phages/mL was the same as the actual phage concentration, while the estimated lysogen concentration was significantly lower than the actual phage concentration (549288.4 estimated vs 625991.1 actual bacteria/mL). The resource concentration was slightly lower than predicted ($5.85 \times 10^{-12}$ estimated vs $5.14 \times 10^{-12}$ actual), although these errors were all in the expected direction. The predicted VMR of 0.048 was similar to the actual VMR of 0.042, which is likely because both lysogen predictions and phage predictions are relatively close to their actual value.
 
 \subsection{Bacteria with phage - multiplicity of infection model}
 
@@ -466,52 +464,51 @@ I don't include all the plots here because the results are essentially the same 
 The reason why the results for this model are similar to the basic model are because the probability of lysogeny varies so little with respect to the phage concentration; with 0 phages, the probability of lysogeny from this model is slightly below 0.35725; increasing the phage concentration drastically to over 6,000,000 phages/mL only increases the probability of lysogeny by about 0.01. It is likely that the majority of infections at any time point with the conditions possible in this system involve only 1 coinfecting phage, but perhaps it is possible in other systems to have significant differences in the probability of lysogeny due to coinfections. For example, if $10^8$ bacteria/mL (approximately the concentration of stationary phase bacteria) were infected in a laboratory setting with $10^9$ phages/mL, a significant increase in $\phi$ to 0.49 would be predicted, given the $K_a$ in this system (Tsui $\&$ Mark, 1976). 
 
 \section{Notes}
-The majority of the code for this project was written in R. The differentials were numerically integrated using deSolve, and the results were plotted using ggplot. The value for K was determined through curve-fitting using the SciPy library in Python. Equilibrium estimates were generated using Maple (see Maple worksheet). Code for the project (which includes the parameters used to generate the representative plots and the parameter estimate of the Hill function) can be found here. \url{https://github.com/Apeirogons/3BM6-Modelling/tree/master/temperate_phage_modelling/scripts}. 
+The majority of the code for this project was written in R. The differentials were numerically integrated using deSolve, and the results were plotted using ggplot. My estimated value for K was determined through curve-fitting using the SciPy library in Python, allowing me to trust the value found in the literature. Equilibrium estimates were generated using Maple (see Maple worksheet). Code for the project (which includes the parameters used to generate the representative plots and the parameter estimate of the Hill function) can be found here. \url{https://github.com/Apeirogons/3BM6-Modelling/tree/master/temperate_phage_modelling/scripts}. 
 
 \section{References}
 
 \begin{enumerate}
-\item	Allen, R., & Waclaw, B. (2018). Bacterial growth: a statistical physicist’s guide. Reports On Progress In Physics, 82(1), 016601.
+\item	Allen, R., $\&$ Waclaw, B. (2018). Bacterial growth: a statistical physicist’s guide. Reports On Progress In Physics, 82(1), 016601.
 \url{https://doi.org/10.1088/1361-6633/aae546}
 
-\item	Cunningham, A., Lennox, J., & Ross, R. (2010). Microbial Growth. \url{Cs.montana.edu}. Retrieved 7 April 2020, from \url{https://www.cs.montana.edu/webworks/projects/stevesbook/contents/chapters/chapter002/section002/black/page001.html}.
+\item	Cunningham, A., Lennox, J., $\&$ Ross, R. (2010). Microbial Growth. \url{Cs.montana.edu}. Retrieved 7 April 2020, from \url{https://www.cs.montana.edu/webworks/projects/stevesbook/contents/chapters/chapter002/section002/black/page001.html}.
 
 \item	Delbrück M. (1945). The Burst Size Distribution in the Growth of Bacterial Viruses (Bacteriophages). Journal of bacteriology, 50(2), 131–135. 
 
-\item	Erez, Z., Steinberger-Levy, I., Shamir, M., Doron, S., Stokar-Avihail, A., & Peleg, Y. et al. (2017). Communication between viruses guides lysis–lysogeny decisions. Nature, 541(7638), 488-493. \url{https://doi.org/10.1038/nature21049}
+\item	Erez, Z., Steinberger-Levy, I., Shamir, M., Doron, S., Stokar-Avihail, A., $\&$ Peleg, Y. et al. (2017). Communication between viruses guides lysis–lysogeny decisions. Nature, 541(7638), 488-493. \url{https://doi.org/10.1038/nature21049}
 
-\item	Figliozzi, R., Chen, F., Chi, A., & Hsia, S. (2016). Using the inverse Poisson distribution to calculate multiplicity of infection and viral replication by a high-throughput fluorescent imaging system. Virologica Sinica, 31(2), 180-183. \url{https://doi.org/10.1007/s12250-015-3662-8} 
+\item	Figliozzi, R., Chen, F., Chi, A., $\&$ Hsia, S. (2016). Using the inverse Poisson distribution to calculate multiplicity of infection and viral replication by a high-throughput fluorescent imaging system. Virologica Sinica, 31(2), 180-183. \url{https://doi.org/10.1007/s12250-015-3662-8} 
 
-\item	Füchslin, H., Schneider, C., & Egli, T. (2011). In glucose-limited continuous culture the minimum substrate concentration for growth, smin, is crucial in the competition between the enterobacterium Escherichia coli and Chelatobacter heintzii, an environmentally abundant bacterium. The ISME Journal, 6(4), 777-789. \url{https://doi.org/10.1038/ismej.2011.143}
+\item	Füchslin, H., Schneider, C., $\&$ Egli, T. (2011). In glucose-limited continuous culture the minimum substrate concentration for growth, smin, is crucial in the competition between the enterobacterium Escherichia coli and Chelatobacter heintzii, an environmentally abundant bacterium. The ISME Journal, 6(4), 777-789. \url{https://doi.org/10.1038/ismej.2011.143}
 
-\item	Gallet, R., Shao, Y., & Wang, I. (2009). High adsorption rate is detrimental to bacteriophage fitness in a biofilm-like environment. BMC Evolutionary Biology, 9(1), 241. \url{https://doi.org/10.1186/1471-2148-9-241} 
+\item	Gallet, R., Shao, Y., $\&$ Wang, I. (2009). High adsorption rate is detrimental to bacteriophage fitness in a biofilm-like environment. BMC Evolutionary Biology, 9(1), 241. \url{https://doi.org/10.1186/1471-2148-9-241} 
 
 \item	Gandon, S. (2016). Why Be Temperate: Lessons from Bacteriophage λ. Trends In Microbiology, 24(5), 356-365. \url{https://doi.org/10.1016/j.tim.2016.02.008}
 
-\item	Hanson, R., & Snyder, J. (1979). Enzymatic determination of glucose in marine environments: Improvement and note of caution. Marine Chemistry, 7(4), 353-362. \url{https://doi.org/10.1016/0304-4203(79)90021-5} 
+\item	Hanson, R., $\&$ Snyder, J. (1979). Enzymatic determination of glucose in marine environments: Improvement and note of caution. Marine Chemistry, 7(4), 353-362. \url{https://doi.org/10.1016/0304-4203(79)90021-5} 
 
-\item	Heilmann, S., Sneppen, K., & Krishna, S. (2010). Sustainability of Virulence in a Phage-Bacterial Ecosystem. Journal Of Virology, 84(6), 3016-3022. https://doi.org/10.1128/jvi.02326-09
+\item	Heilmann, S., Sneppen, K., $\&$ Krishna, S. (2010). Sustainability of Virulence in a Phage-Bacterial Ecosystem. Journal Of Virology, 84(6), 3016-3022. https://doi.org/10.1128/jvi.02326-09
 
-\item	Mitarai, N., Brown, S., & Sneppen, K. (2016). Population Dynamics of Phage and Bacteria in Spatially Structured Habitats Using Phage λ and Escherichia coli. Journal Of Bacteriology, 198(12), 1783-1793. \url{https://doi.org/10.1128/jb.00965-15}
+\item	Mitarai, N., Brown, S., $\&$ Sneppen, K. (2016). Population Dynamics of Phage and Bacteria in Spatially Structured Habitats Using Phage λ and Escherichia coli. Journal Of Bacteriology, 198(12), 1783-1793. \url{https://doi.org/10.1128/jb.00965-15}
 
-\item	Phillips, R., & Milo, R. (2009). A feeling for the numbers in biology. Proceedings Of The National Academy Of Sciences, 106(51), 21465-21471. \url{https://doi.org/10.1073/pnas.0907732106}
+\item	Phillips, R., $\&$ Milo, R. (2009). A feeling for the numbers in biology. Proceedings Of The National Academy Of Sciences, 106(51), 21465-21471. \url{https://doi.org/10.1073/pnas.0907732106}
 
-\item	Ryan, G., & Rutenberg, A. (2007). Clocking Out: Modeling Phage-Induced Lysis of Escherichia coli. Journal Of Bacteriology, 189(13), 4749-4755. \url{https://doi.org/10.1128/jb.00392-07}
+\item	Ryan, G., $\&$ Rutenberg, A. (2007). Clocking Out: Modeling Phage-Induced Lysis of Escherichia coli. Journal Of Bacteriology, 189(13), 4749-4755. \url{https://doi.org/10.1128/jb.00392-07}
 
-\item	Sinha, V., Goyal, A., Svenningsen, S., Semsey, S., & Krishna, S. (2017). In silico Evolution of Lysis-Lysogeny Strategies Reproduces Observed Lysogeny Propensities in Temperate Bacteriophages. Frontiers In Microbiology, 8. \url{https://doi.org/10.3389/fmicb.2017.01386}
+\item	Sinha, V., Goyal, A., Svenningsen, S., Semsey, S., $\&$ Krishna, S. (2017). In silico Evolution of Lysis-Lysogeny Strategies Reproduces Observed Lysogeny Propensities in Temperate Bacteriophages. Frontiers In Microbiology, 8. \url{https://doi.org/10.3389/fmicb.2017.01386}
 
-\item	Storms, Z., & Sauvageau, D. (2015). Modeling tailed bacteriophage adsorption: Insight into mechanisms. Virology, 485, 355-362.
+\item	Storms, Z., $\&$ Sauvageau, D. (2015). Modeling tailed bacteriophage adsorption: Insight into mechanisms. Virology, 485, 355-362.
 \url{https://doi.org/10.1016/j.virol.2015.08.007}
 
-\item	Tsui, L., & Mark, K. (1976). The depression of endolysin synthesis in bacteria infected with high multiplicities of phage λ. Molecular And General Genetics MGG, 143(3), 269-278. \url{https://doi.org/10.1007/bf00269403}
+\item	Tsui, L., $\&$ Mark, K. (1976). The depression of endolysin synthesis in bacteria infected with high multiplicities of phage λ. Molecular And General Genetics MGG, 143(3), 269-278. \url{https://doi.org/10.1007/bf00269403}
 
-\item	Weitz, J., Beckett, S., Brum, J., Cael, B., & Dushoff, J. (2017). Lysis, lysogeny and virus–microbe ratios. Nature, 549(7672), E1-E3. \url{https://doi.org/10.1038/nature23295}
+\item	Weitz, J., Beckett, S., Brum, J., Cael, B., $\&$ Dushoff, J. (2017). Lysis, lysogeny and virus–microbe ratios. Nature, 549(7672), E1-E3. \url{https://doi.org/10.1038/nature23295}
 
-\item	Zeng, L., Skinner, S., Zong, C., Sippy, J., Feiss, M., & Golding, I. (2010). Decision Making at a Subcellular Level Determines the Outcome of Bacteriophage Infection. Cell, 141(4), 682-691. \url{https://doi.org/10.1016/j.cell.2010.03.034}
+\item	Zeng, L., Skinner, S., Zong, C., Sippy, J., Feiss, M., $\&$ Golding, I. (2010). Decision Making at a Subcellular Level Determines the Outcome of Bacteriophage Infection. Cell, 141(4), 682-691. \url{https://doi.org/10.1016/j.cell.2010.03.034}
 
-\item	Ziv, N., Brandt, N., & Gresham, D. (2013). The Use of Chemostats in Microbial Systems Biology. Journal Of Visualized Experiments, (80). \url{https://doi.org/10.3791/50168}
+\item	Ziv, N., Brandt, N., $\&$ Gresham, D. (2013). The Use of Chemostats in Microbial Systems Biology. Journal Of Visualized Experiments, (80). \url{https://doi.org/10.3791/50168}
 \end{enumerate}
-\end{section}
 
 \end{document}
 
