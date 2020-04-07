@@ -194,14 +194,17 @@ which is equivalent to
 $\phi = \underbrace{\frac{\sum_{N=1}^{\infty}{p(\lambda, N) \cdot \pi(N)}}{1-p(\lambda, 0)}}_{\text{probability of lysogeny given infection}}$
 \end{center}
 
-However, one question remains: What is the form of $\pi(N)$? Fortunately, the literature suggests that the form is a Hill function, therefore following the following form suggested by Zeng et al.
+However, one question remains: What is the form of $\pi(N)$? Fortunately, the literature suggests that the form is a Hill function, therefore following the following form suggested by Zeng et al. 
 
 \begin{center}
 $\pi(N) = \frac{Nh}{Nh + Kh}$
 \end{center}
+Dividing both numerator and denominator by h,
+\begin{center}
+$\pi(N) = \frac{N}{N + K}$
+\end{center}
 
  
-
 The Poisson distribution theoretically allows for any number of coinfecting phages, but the impact of larger numbers of coinfecting phages becomes vanishingly small and may be ignored. In practice, we calculate each summation term up to N=20. This new $\phi$ can be used in place of the original parameter $\phi$ in the basic model.
 
 \subsection{Quorum sensing}
@@ -289,8 +292,8 @@ The basic model may be modified by tracking $A$, adding this differential, and a
 
 \subsection{Regarding the multiplicity of infection model}
 \begin{itemize}
-\item $h$: 1.00 (unitless). Determined by Zeng et al.
-\item $K$: 1.812 (unitless). Estimated from Figure 2C in the paper published by Zeng et al. in 2010, with h fixed at 1.00. Unfortunately, even though the authors determined the value of K, the authors do not give its value.
+\item $K$: 1.80 (unitless). Determined by Zeng et al., 2010. Note: h determined by Zeng et al. not used as it cancels out of the equation. 
+
 \item Lysis time: 0.75 hr, for the $\lambda$ - \textit{E. coli} system (Ryan $\&$ Rutenberg, 2007). 
 \end{itemize}
 
@@ -460,7 +463,7 @@ There are essentially 0 uninfected bacteria at equilibrium, as predicted. The es
 
 I don't include all the plots here because the results are essentially the same as the basic model. (As another example of the equilibrium VMR, this VMR is about 20, but that does not have do do with the adaptation of $\phi$.)
 
-The reason why the results for this model are similar to the basic model are because the probability of lysogeny varies so little with respect to the phage concentration; with 0 phages, the probability of lysogeny from this model is slightly above 0.355; increasing the phage concentration drastically to over 6,000,000 phages/mL only increases the probability of lysogeny by about 0.01. It is likely that the majority of infections at any time point with the conditions possible in this system involve only 1 coinfecting phage, but perhaps it is possible in other systems to have significant differences in the probability of lysogeny due to coinfections. For example, if $10^8$ bacteria/mL (approximately the concentration of stationary phase bacteria) were infected in a laboratory setting with $10^9$ phages/mL, a significant increase in $\phi$ to 0.49 would be predicted, given the $K_a$ in this system (Tsui $\&$ Mark, 1976). 
+The reason why the results for this model are similar to the basic model are because the probability of lysogeny varies so little with respect to the phage concentration; with 0 phages, the probability of lysogeny from this model is slightly below 0.35725; increasing the phage concentration drastically to over 6,000,000 phages/mL only increases the probability of lysogeny by about 0.01. It is likely that the majority of infections at any time point with the conditions possible in this system involve only 1 coinfecting phage, but perhaps it is possible in other systems to have significant differences in the probability of lysogeny due to coinfections. For example, if $10^8$ bacteria/mL (approximately the concentration of stationary phase bacteria) were infected in a laboratory setting with $10^9$ phages/mL, a significant increase in $\phi$ to 0.49 would be predicted, given the $K_a$ in this system (Tsui $\&$ Mark, 1976). 
 
 \section{Notes}
 The majority of the code for this project was written in R. The differentials were numerically integrated using deSolve, and the results were plotted using ggplot. The value for K was determined through curve-fitting using the SciPy library in Python. Equilibrium estimates were generated using Maple (see Maple worksheet). Code for the project (which includes the parameters used to generate the representative plots and the parameter estimate of the Hill function) can be found here. \url{https://github.com/Apeirogons/3BM6-Modelling/tree/master/temperate_phage_modelling/scripts}. 

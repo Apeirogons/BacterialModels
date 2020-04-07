@@ -9,8 +9,8 @@ q <- function(R, eta){ # Death function
 }
 
 
-hill = function(N, h, K){ # Hill function used in MOI model.
-  return (N*h/(N*h + K*h))
+hill = function(N, K){ # Hill function used in MOI model.
+  return (N/(N + K))
 }
 
 phi_moi <- function(K_a, P, h, K){ # h, K are parameters for the Hill function
@@ -18,7 +18,7 @@ phi_moi <- function(K_a, P, h, K){ # h, K are parameters for the Hill function
   lambda = K_a*P
   for(N in 1:20){
     p = dpois(N, lambda = lambda)
-    pi = hill(N, h, K)
+    pi = hill(N, K)
     total = total + p * pi
   }
   return (total/(1-dpois(0, lambda=lambda)))}

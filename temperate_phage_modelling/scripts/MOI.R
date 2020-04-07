@@ -19,8 +19,7 @@ d = 0*multiplier
 i = 1.14730635311557e-09*multiplier
 R_0 = i
 
-h=1.00
-K=1.814
+K=1.80
 
 out = data.frame()
 
