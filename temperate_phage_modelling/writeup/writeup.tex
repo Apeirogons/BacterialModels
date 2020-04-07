@@ -254,7 +254,7 @@ The basic model may be modified by tracking $A$, adding this differential, and a
 
 \item $V_L$: Set to $V_U/2$ (significantly slower than $V_U$).
 
-\item $H$:$15 \times 10^{-9} - 35 \times 10^{-9}$ (g/mL). Upper bound is the $K_s$ for \textit{Escherichia coli}, while lower bound is the $K_s$ for \textit{Chelatobacter heintzii}. (Füchslin et al., 2011)
+\item $H$:$15 \times 10^{-9} - 35 \times 10^{-9}$ (g/mL). Upper bound is the $K_s$ for \textit{Escherichia coli}, while lower bound is the $K_s$ for \textit{Chelatobacter heintzii} (Füchslin et al., 2011). 
 
 \item $e$: $5.98\times 10^{-13} - 5.4 \times 10^{-12}$ g/bacterium. Lower bound from estimate that $2 \times 10^9$ molecules of glucose required per cell (Phillips $\&$ Milo, 2009).  Upper bound from estimate that $1.8 \times 10^10$ molecules of glucose required per cell (Allen $\&$ Waclaw, 2018). 
 \end{itemize}
@@ -270,7 +270,7 @@ The basic model may be modified by tracking $A$, adding this differential, and a
 \begin{itemize}
 \item $\beta$: 20-1000 (unitless). Biological range used by Sinha et al., 2017. 
 \item $K_a$: $4.46 \times 10^{-9} - 6.18 \times 10^{-7}$ (mL/phages/hr). Estimates from lowest and highest adsorption rates used by Gallet et al., 2009.
-\item $D_p$: $1 \times 10^{-7}$ (/hr). Arbitrarily set as a low number as literature suggests free phage death rate is low.
+\item $D_p$: $1 \times 10^{-7}$ (/hr). Arbitrarily set as a low number as literature suggests free phage death rate is low (Heilmann et al., 2010).
 \end{itemize}
 
 \subsection{Regarding temperate phages}
@@ -284,14 +284,14 @@ The basic model may be modified by tracking $A$, adding this differential, and a
 \begin{itemize}
 \item $d$: 0 (/hr). Various dilution rates explored initially, but in the end, set to 0 to allow for section 5 analysis.
 
-\item $i$: $4.8 \times 10^{-10} - 4.8 \times 10^{-9}$ (g/mL/hr). Upper limit taken from estimate of glucose flux from other studies cited in (Hanson $\&$ Snyder, 1979). Lower limit set as an order of magnitude lower than upper limit, taking into account that the study authors found that the estimate of glucose flux was likely to overestimate the true value.
+\item $i$: $4.8 \times 10^{-10} - 4.8 \times 10^{-9}$ (g/mL/hr). Upper limit taken from estimate of glucose flux from other studies cited in the study lead by Hanson $\&$ Snyder, 1979. Lower limit set as an order of magnitude lower than upper limit, taking into account that the study authors found that the estimate of glucose flux was likely to overestimate the true value.
 \end{itemize}
 
 \subsection{Regarding the multiplicity of infection model}
 \begin{itemize}
 \item $h$: 1.00 (unitless). Determined by Zeng et al.
 \item $K$: 1.812 (unitless). Estimated from Figure 2C in the paper published by Zeng et al. in 2010, with h fixed at 1.00. Unfortunately, even though the authors determined the value of K, the authors do not give its value.
-\item Lysis time: 0.75 hr, for the $\lambda$ - \textit{E. coli} system. (Ryan $\&$ Rutenberg, 2007)
+\item Lysis time: 0.75 hr, for the $\lambda$ - \textit{E. coli} system (Ryan $\&$ Rutenberg, 2007). 
 \end{itemize}
 
 \section {Equilibrium estimates}
@@ -471,7 +471,7 @@ The majority of the code for this project was written in R. The differentials we
 \item	Allen, R., & Waclaw, B. (2018). Bacterial growth: a statistical physicist’s guide. Reports On Progress In Physics, 82(1), 016601.
 \url{https://doi.org/10.1088/1361-6633/aae546}
 
-\item	Cunningham, A., Lennox, J., & Ross, R. (2010). Microbial Growth. Cs.montana.edu. Retrieved 7 April 2020, from \url{https://www.cs.montana.edu/webworks/projects/stevesbook/contents/chapters/chapter002/section002/black/page001.html}.
+\item	Cunningham, A., Lennox, J., & Ross, R. (2010). Microbial Growth. \url{Cs.montana.edu}. Retrieved 7 April 2020, from \url{https://www.cs.montana.edu/webworks/projects/stevesbook/contents/chapters/chapter002/section002/black/page001.html}.
 
 \item	Delbrück M. (1945). The Burst Size Distribution in the Growth of Bacterial Viruses (Bacteriophages). Journal of bacteriology, 50(2), 131–135. 
 
@@ -486,6 +486,8 @@ The majority of the code for this project was written in R. The differentials we
 \item	Gandon, S. (2016). Why Be Temperate: Lessons from Bacteriophage λ. Trends In Microbiology, 24(5), 356-365. \url{https://doi.org/10.1016/j.tim.2016.02.008}
 
 \item	Hanson, R., & Snyder, J. (1979). Enzymatic determination of glucose in marine environments: Improvement and note of caution. Marine Chemistry, 7(4), 353-362. \url{https://doi.org/10.1016/0304-4203(79)90021-5} 
+
+\item	Heilmann, S., Sneppen, K., & Krishna, S. (2010). Sustainability of Virulence in a Phage-Bacterial Ecosystem. Journal Of Virology, 84(6), 3016-3022. https://doi.org/10.1128/jvi.02326-09
 
 \item	Mitarai, N., Brown, S., & Sneppen, K. (2016). Population Dynamics of Phage and Bacteria in Spatially Structured Habitats Using Phage λ and Escherichia coli. Journal Of Bacteriology, 198(12), 1783-1793. \url{https://doi.org/10.1128/jb.00965-15}
 
