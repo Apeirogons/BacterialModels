@@ -7,7 +7,7 @@ lognormal_converter <- function(lower, upper){
   ln_sd = (ln_upper-ln_mean)/2
   return(c(mu=ln_mean, sigma=ln_sd))
 }
-
+multiplier=1
 parameter_generator <- function(){
 params_V_U = lognormal_converter(0.5, 10)
 V_U = rlnorm(1, params_V_U[1], params_V_U[2])*multiplier
@@ -34,13 +34,13 @@ r = rlnorm(1, params_r[1], params_r[2])*multiplier
 params_K_a = lognormal_converter(4.46e-9, 6.18e-7)
 K_a = rlnorm(1, params_K_a[1], params_K_a[2])*multiplier
 
-D_p = 1e-7
+D_p = 1e-7*multiplier
 
 params_beta = lognormal_converter(20, 1000) 
 beta = rlnorm(1, params_beta[1], params_beta[2])
 
 params_d = lognormal_converter(1e-4, 0.35)
-d = 0.0
+d = 0.0*multiplier
 
 params_i = lognormal_converter(4.8e-10, 4.8e-9)
 i = rlnorm(1, params_i[1], params_i[2])*multiplier 
