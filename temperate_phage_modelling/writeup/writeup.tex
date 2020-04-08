@@ -87,9 +87,9 @@ $
  These models consider a well-mixed system of bacteria and phage in an environment with some concentration of resources.
 
 \subsection{First Choices of State Variables}
-A system to model lysis-lysogeny decisions would not be possible without phages, as well as their bacterial hosts. Since the lysogenic cycle can convert uninfected bacteria to lysogens, both these variables must be tracked as well. Additionally, I use a resource-dependent model of bacterial growth, in part to explore conditions of cyclic resources (which are important in the ecology of temperate phages). In this case, I assumed that the limiting resource was energy (glucose), as this was the only resource I could find data for. 
+A system to model lysis-lysogeny decisions would not be possible without phages, as well as their bacterial hosts. Since the lysogenic cycle can convert uninfected bacteria to lysogens, both these variables must be tracked as well. Additionally, use a resource-dependent model of bacterial growth is used, in part to allow the future exploration of cyclic resource (which are important in the ecology of temperate phages). It was assumed that the limiting resource was energy (glucose), as this was the only resource for which the appropriate Monod constants could be found.
 
-I assume lysogens and uninfected bacteria to have similar laws governing their growth and phage adsorption unless otherwise stated.
+Lysogens and uninfected bacteria are assumed to have similar laws governing their growth and phage adsorption unless otherwise stated.
 
 \subsection{Modelling resource-dependent bacterial growth}
 There exist many models of bacterial growth, but all choices of models should include the following:
@@ -111,11 +111,11 @@ $
 $\frac{dR}{dt} = -e \cdot V \cdot m(R, H) \cdot B $
 \end{center}
 
-Firstly, I observed the form of $m$. This function is concave down, is bounded between 0 and 1, and is equal to 0 when $R=0$. 
+Firstly, it was observed that $m$ is concave down, is bounded between 0 and 1, and is equal to 0 when $R=0$. 
 
 Looking at $\frac{dB}{dt}$, it is clear that this function represents the proportion of the maximal growth rate achieved at a given resource concentration. It also incorporates the maximal growth rate which was discussed earlier. 
 
-Next, I observed the form of $\frac{dR}{dt}$. This differential makes the resource utilization equal to the number of new bacteria, multiplied by $e$. Therefore, $e$ represents the amount of resources used to form a new bacterium. However, this means that the model does not capture any baseline resource utilization by bacteria independent of bacterial growth; this was omitted for stability considerations.
+ $\frac{dR}{dt}$ implies that the resource utilization equal to the number of new bacteria, multiplied by $e$. Therefore, $e$ represents the amount of resources used to form a new bacterium. However, this means that the model does not capture any baseline resource utilization by bacteria independent of bacterial growth; this was omitted for stability considerations.
  
 If given an initial amount of resource, the growth function produces a sigmoid-shaped bacterial growth curve with respect to time, which is expected. However, this population saturation is due to the growth rate vanishing to zero as resources are used. In general, the Monod model cannot capture bacterial death.
 
@@ -124,7 +124,7 @@ Bacteria should have a natural death rate, which monotonically decreases with th
 
 A convenient function for a bacterial death function related to resource deprivation might be related to bacterial growth in the Monod growth function, due to the link between bacterial death and resource concentration. However, instead of the growth rate increasing with increased resource, we have the death rate decreasing with increased resource.
 
-We would like to represent the proportion of the maximal death rate achieved with 1-m (as this is bounded between 0 and 1, and decreases the death rate with increasing resource). However, we may reformulate this death equation to assume constant rates of bacterial death if required.
+The proportion of the maximal death rate achieved will be represented by 1-m (as this is bounded between 0 and 1, and decreases the death rate with increasing resource). However, the death equation is reformulated to assume constant rates of bacterial death, due to the simplicity afforded by setting the death rate to a constant number.
 
 \begin{center}
 \begin {equation} 
@@ -141,7 +141,7 @@ Phage-bacteria binding should follow the law of mass action, as the binding betw
 
 This model assumes that each adsorption to an uninfected bacterium leads to an infection, with no failed infections. This is unrealistic (for example, restriction enzyme systems may lead to failed infections, among others), but has been left out for simplicity. However, one could model this by assuming a constant or changing rate of infection failure. Additionally, phages adsorbed in this way are removed from the free phage compartment. 
 
-I assume that free phages are degraded at a constant rate independent of adsorption to bacteria. For example, they may be adsorbed to other things in the environment, or by exposure to UV radiation. 
+Another assumption is that free phages are degraded at a constant rate independent of adsorption to bacteria. For example, they may be adsorbed to other things in the environment, or by exposure to UV radiation. 
 
 The model also assumes that bacteria entering the lytic cycle instantly die, producing a constant number of phages. These are both unrealistic assumptions made for the sake of simplicity. The lytic cycle takes time to produce phages and to lyse the cell, and the number of phages produced per bacterium is not constant (Delbrück, 1945). The number of phages produced per bacterium is modeled as the average burst size. In reality, the number of phages produced likely depends on how many phages can be made before the cell lyses due to lysis-inducing protein production, which depends on how readily bacterial resources can be mobilized. 
 
@@ -155,9 +155,9 @@ Lysogens may spontaneously induce a lytic cycle. Most literature shows that lyso
 
 \subsection{Ecosystem maintenance}
 
-I assume that the ecosystem is maintained by a constant infusion of resources. In some cases, this might be true (for example, if the rate-limiting resource is glucose derived from energy obtained from sunlight). This is a fairly simple assumption that may be realistic. 
+It is assumed that the ecosystem is maintained by a constant infusion of resources. In some cases, this might be true (for example, if the rate-limiting resource is glucose derived from energy obtained from sunlight). This is a fairly simple assumption that may be realistic. 
 
-Each free component of the ecosystem may be subject to dilution over time. This has been done in microbiology to model bacteria growing in a chemostat (Ziv et al., 2013). However, this might also be realistic in other ecosystems where dilution may occur, for example, marine ecosystems. 
+Each free component of the ecosystem may be subject to dilution over time. This has been done in microbiology to model bacteria growing in a chemostat (Ziv et al., 2013). However, this might also be realistic in other ecosystems where dilution may occur, for example, in marine ecosystems. 
 
 \subsection{Parameter Sampling}
 
@@ -169,7 +169,7 @@ All parameters which were not arbitrarily set are sampled from a log-uniform dis
 The probability of lysogeny in phage $\lambda$ is known to increase when the bacterium is infected by multiple phages at once (Zeng et al., 2010). One reasonable assumption to model this is that the number of phages infecting a bacterium is Poisson distributed with mean equal to $K_aP$ (Figliozzi et al., 2016). This way, the interpretation of the Poisson distribution is the probability that one given bacteria will be infected with N coinfecting phages. Additionally, we will require a function mapping the number of coinfecting phages to a probability of lysogeny.
 
 \subsubsection{Model building}
-For this MOI model, a time scale important to viral replication must be used. Therefore, I chose a time scale equal to 1/10th of the lysis time of phage $\lambda$, equal to 4.5 minutes (Ryan $\&$ Rutenberg, 2007). This selection of 1/10th of the lysis time has been used in other modelling studies (Mitarai et al., 2016). 
+For this MOI model, a time scale important to viral replication must be used. Therefore, a time scale equal to 1/10th of the lysis time of phage $\lambda$, equal to 4.5 minutes, was chosen (Ryan $\&$ Rutenberg, 2007). This selection of 1/10th of the lysis time has been used in other modelling studies (Mitarai et al., 2016). 
 
 $\pi(N)$: The probability of lysogeny as a function of the number of coinfecting phages. 
 
@@ -178,12 +178,12 @@ p(\lambda, N) = \underbrace{\frac{{e^{ - \lambda } \lambda ^N}}{{N!}}}_{\text{pd
 $\lambda = \underbrace{K_a \cdot P}_{\text{mean of the Poisson distribution}}$
 \end{center} 
 
-Firstly, we can compute the probability that any one bacterium will become lysogenized:
+This equation computes the probability that any one bacterium will become lysogenized:
 \begin{center}
 $=\sum_{N=1}^{\infty}{p(\lambda, N) \cdot \pi(N)}$
 \end{center}
 
-However, what we want is actually the probability that any \emph{infected} bacterium will become lysogenized. To get this, we will divide this term by the total infection probability. 
+However, to replace $\phi$, the probability that any \emph{infected} bacterium will become lysogenized is required. To obtain this value, the above equation is divided by the total infection probability. 
 \begin{center}
 $
 \phi = \underbrace{\frac{\sum_{N=1}^{\infty}{p(\lambda, N) \cdot \pi(N)}}{\sum_{N=1}^{\infty}p(\lambda, N) }}_{\text{probability of lysogeny given infection}}$
@@ -212,12 +212,12 @@ The Poisson distribution theoretically allows for any number of coinfecting phag
 A quorum-sensing system has been found to increase the probability of lysogeny in phages using this system in the presence of the quorum-sensing (arbitrium) peptide (Erez et al., 2017). 
 The probability of lysogeny should be a monotonically increasing function of arbitrium concentration, and is therefore bounded between 0 and 1. Binding of the arbitrium receptor leads to the downregulation of an operator favoring lytic activity, so from a biological standpoint, it seems unlikely that increasing arbitrium would actually decrease lysogenic activity at any point. A convenient function here might be yet another Monod-type function for simplicity, as the exact functional form of the system is not yet known. 
 
-I also assume that there is a baseline probability of lysogeny independent of arbitrium concentration. This is supported by the paper. This lends itself to a functional form equal to a constant baseline, plus some monotonically increasing function of arbitrium (due to the activation of the arbitrium system).
+It is assumed that there is a baseline probability of lysogeny independent of arbitrium concentration, as proposed by Erez et al. This leads to a functional form equal to a constant baseline, plus some monotonically increasing function of arbitrium (due to the activation of the arbitrium system).
 
-Another assumption is that produces a constant (the average) number of arbitrium peptides upon lysogenic infection. This is likely unrealistic, but done for simplicity. I also assume that the arbitrium peptides have a constant rate of degradation, as the peptides cannot accumulate forever. 
+Another assumption is that produces a constant (the average) number of arbitrium peptides upon lysogenic infection. This is likely unrealistic, but done for simplicity. It is assumed that that once released, the arbitrium peptides have a constant rate of degradation, as the peptides cannot accumulate forever. 
 
 \subsubsection{Model building}
-Firstly, we will track a new state variable $A$, the concentration of the peptide in the system (peptides/mL). The probability of lysogeny should be of the form
+Firstly, a new state variable $A$, the concentration of the peptide in the system, is tracked (peptides/mL). The probability of lysogeny should be of the form
 
 \begin{center}
 $ \phi = \underbrace{\phi_0 + f(A) \cdot (1-\phi_0)}_{\text{sum of lysogeny probability due to baseline and arbitrium}}$
@@ -225,13 +225,13 @@ $ \phi = \underbrace{\phi_0 + f(A) \cdot (1-\phi_0)}_{\text{sum of lysogeny prob
 
 where $\phi_0$ represents the baseline level of lysogeny. $f(A)$ should be a monotonically increasing function bounded between 0 and 1, so this term is scaled by $(1-\phi_0)$ to ensure that the total probability of lysogeny remains between 0 and 1.
 
-Unlike for the MOI model, the literature does not have any data on the functional form of $f(A)$. For convenience, I will choose the simple form 
+Unlike for the MOI model, the literature does not have any data on the functional form of $f(A)$. For convenience, the form
 
 \begin{center}
 $f(A) = \frac{A}{H_A+A}$
 \end{center}
 
-where $H_A$ represents the arbitrium concentration resulting in half-maximal increase in probability of lysogeny due to the arbitrium system.
+is used, where $H_A$ represents the arbitrium concentration resulting in half-maximal increase in probability of lysogeny due to the arbitrium system.
 
 The arbitrium peptides are produced in some quantity $n_A$ upon all phage infections, degrade at a constant rate $d_A$, and are diluted at a constant rate $d$. Therefore, 
 \begin{center}
@@ -244,8 +244,8 @@ The basic model may be modified by tracking $A$, adding this differential, and a
 
 \subsection{Initial conditions for state variables}
 \begin{itemize}
-\item $U_0$: 1 bacteria/mL. I arbitrarily set a low bacterial concentration so that the entire growth curve could be observed.
-\item $L_0$: 0 bacteria/mL. I assumed that no bacteria were infected at time 0.
+\item $U_0$: 1 bacteria/mL. A low bacterial concentration was arbitrarily set to ensure that the entire growth curve could be observed.
+\item $L_0$: 0 bacteria/mL. It was assumed that no bacteria were infected at time 0.
 \item $P_0$: 1 bacteria/mL. Often, in laboratory experiments, bacteria are infected with a multiplicity of infection of 1 (in this context, MOI means the ratio of viral concentration to bacterial concentration, not the number of coinfecting phages). 
 \item $R_0$: Arbitrarily set equal to infusion rate. 
 \end{itemize}
@@ -298,7 +298,7 @@ The basic model may be modified by tracking $A$, adding this differential, and a
 \end{itemize}
 
 \section {Equilibrium estimates}
-We can obtain upper or lower bounds for model equilibria by making assumptions, setting differentials to 0, and solving the resulting system of equations. Some of these estimates are actually exact values for model equilibria.
+ Upper or lower bounds for model equilibria may be obtained by making assumptions, setting differentials to 0, and solving the resulting system of equations. Some of these estimates are  exact values for model equilibria.
 
 \subsection{Bacteria with no phages}
 The equations governing bacterial growth in the absence of phage and with constant bacterial death are:
@@ -319,7 +319,7 @@ At equilibrium, there is no change in the bacterial concentration or the resourc
 \end{split}
 \end{equation}
 
-I used Maple (a mathematical software) to solve these equations, and the solutions were:
+Maple (a mathematical software) was used to solve these equations. The resulting solutions are as follows:
 
 \begin{equation}
 \begin{split}
@@ -334,9 +334,9 @@ These are surprising results, as the maximal bacterial growth rate counterintuit
 \subsection{Bacteria with phages}
 The equations governing bacterial growth in the presence of phage and with constant bacterial death are listed in section 1.3. Similarly, if we set all the differentials to 0 ($
 \frac{dU}{dt} = 0, \frac{dR}{dt} = 0, \frac{dL}{dt} = 0, \frac{dP}{dt} = 0
-$), we can obtain analytic solutions for the system equilibrium. However, while solvable, the solutions are unintelligible.  
+$), analytic solutions for the system equilibrium may be obtained. However, while solvable, the solutions are unintelligible.  
 
-One simplifying assumption is that at the end of a successful infection, nearly all of the phages are produced by induction. Thus, $\frac{dP}{dt} = \beta r L - K_a P L$. Using this assumption, we can obtain some bounds on equilibrium concentrations by assuming that U=0. After solving all of the differentials, we obtain:
+One simplifying assumption is that at the end of a successful infection, nearly all of the phages are produced by induction. Thus, $\frac{dP}{dt} = \beta r L - K_a P L$. Using this assumption, we can obtain some bounds on equilibrium concentrations by assuming that U=0. After solving all of the differentials, the following equations were obtained:
 
 \begin{equation}
 \begin{split}
@@ -346,7 +346,7 @@ L = \frac{i}{e (D_B + r)}
 \end{split}
 \end{equation}
 
-Unsurprisingly, the higher the induction rate and burst size, the more free phages at equilibrium. One less obvious point is that the phage concentration at equilibrium decreases with increasing $K_a$, which is because lysing more uninfected bacteria is less important than being adsorbed into existing lysogens. For the lysogens, we find that the equilibrium is hardly different from the case with no phages, which makes sense as the lysogens are unaffected by external phage (dying slightly more frequently due to $r$).
+Unsurprisingly, the higher the induction rate and burst size, the more free phages at equilibrium. One less obvious point is that the phage concentration at equilibrium decreases with increasing $K_a$, which is because lysing more uninfected bacteria is less important than being adsorbed into existing lysogens. For the lysogens, the the equilibrium is hardly different from the case with no phages, which is logical, as the lysogens are unaffected by external phage (dying slightly more frequently due to $r$).
 
 The phage prediction puts a lower bound on the number of phages at equilibrium (as phages can also be produced through lysing uninfected bacteria). The resource prediction puts an upper bound on the amount of resources at equilibrium (as uninfected bacteria utilize resources to grow). The lysogen prediction puts a lower bound on the number of lysogens at equilibrium, as lysogens may also be produced by infecting uninfected bacteria. In practice, the estimate for phages is quite accurate, while R and L estimates are on the same order of magnitude of the actual R and L. However, the accuracy of the estimates decrease with increasing $D_p$.
 
@@ -366,7 +366,7 @@ Unsurprisingly, VMR is increased with increased burst size and induction rate (m
 \subsection{Resource shocks}
 Due to having growth mechanics borrowed from the Monod law, the peak of the bacterial curve resulting from a sudden infusion of resource must be lower than the $R$ after the shock, divided by $e$. However, the exact height of the peak will depend on the rate of resource utilization at the time of the shock (which depends on $V, H$, and $R$), as well as factors which can kill the bacteria such as phage and bacterial death rate. 
 
-However, as stated before, short-term resource shocks do not affect the long-term equilibrium in this model. In real life, it is probably possible for a resource shock to completely wipe out all bacteria and phage in a system, leading to an equilibrium of 0 even after resources return; however, all concentrations in this model asymptotically approach 0, leading to an inevitable return of the populations if resources return. 
+However, as stated before, short-term resource shocks do not affect the long-term equilibrium in this model. In a real ecosystem, it is probably possible for a resource shock to completely wipe out all bacteria and phage in a system, leading to an equilibrium of 0 even after resources return; however, all concentrations in this model asymptotically approach 0, leading to an inevitable return of the populations if resources return. 
 
 \section{Results from model integration}
 \subsection {Bacteria without phage}
@@ -415,7 +415,7 @@ The model also reacts to perturbations. In this example, I have increased the re
 \includegraphics[scale=0.5]{plots/NoPhage_R_perturbed_down.png}
 \end{center}
 
-In this last example, I have decreased the infusion rate to half of its original amount at t=15000. According to the equilibrium equations, this change should decrease the carrying capacity by half and should not change the equilibrium resource concentration. Both changes are reflected in these plots.
+In this last example, the infusion rate was decreased to half of its original amount at t=15000. According to the equilibrium equations, this change should decrease the carrying capacity by half and should not change the equilibrium resource concentration. Both changes are reflected in these plots.
 
 \subsection {Bacteria with phage - Basic model}
 \subsubsection{Lysogen Takeover}
@@ -445,7 +445,7 @@ As there exist few uninfected bacteria in the population after the lysogen takeo
 \begin{center}$
 \text{VMR} = \frac{\beta r e (D_B + r)}{K_a i + D_pe (D_B + r)}$
 \end{center}
-meaning that the VMR is approximately linear with respect to r, which I estimate can span multiple orders of magnitude depending on conditions. Additionally, the VMR further depends on $K_a$, which also may span multiple orders of magnitude. While most of the simulations observed showed VMRs less than 1, VMRs greater than 1 have been observed.
+meaning that the VMR is approximately linear with respect to r, which may span multiple orders of magnitude depending on conditions. Additionally, the VMR further depends on $K_a$, which also may span multiple orders of magnitude. While most of the simulations observed showed VMRs less than 1, VMRs greater than 1 have been observed.
 
 How accurate were the predictions in this case? There are essentially 0 uninfected bacteria at equilibrium, as predicted. The estimated phage concentration of 26582.56 phages/mL was the same as the actual phage concentration, while the estimated lysogen concentration was significantly lower than the actual phage concentration (549288.4 estimated vs 625991.1 actual bacteria/mL). The resource concentration was slightly lower than predicted ($5.85 \times 10^{-12}$ estimated vs $5.14 \times 10^{-12}$ actual), although these errors were all in the expected direction. The predicted VMR of 0.048 was similar to the actual VMR of 0.042, which is likely because both lysogen predictions and phage predictions are relatively close to their actual value.
 
@@ -459,12 +459,12 @@ How accurate were the predictions in this case? There are essentially 0 uninfect
 \includegraphics[scale=0.5]{plots/MOI_phi.png}
 \end{center}
 
-I don't include all the plots here because the results are essentially the same as the basic model. (As another example of the equilibrium VMR, this VMR is about 20, but that does not have do do with the adaptation of $\phi$.)
+The results here are essentially the same as the basic model. (As another example of the equilibrium VMR, this VMR is about 20, but that does not have do do with the adaptation of $\phi$.)
 
-The reason why the results for this model are similar to the basic model are because the probability of lysogeny varies so little with respect to the phage concentration; with 0 phages, the probability of lysogeny from this model is slightly below 0.35725; increasing the phage concentration drastically to over 6,000,000 phages/mL only increases the probability of lysogeny by about 0.01. It is likely that the majority of infections at any time point with the conditions possible in this system involve only 1 coinfecting phage, but perhaps it is possible in other systems to have significant differences in the probability of lysogeny due to coinfections. For example, if $10^8$ bacteria/mL (approximately the concentration of stationary phase bacteria) were infected in a laboratory setting with $10^9$ phages/mL, a significant increase in $\phi$ to 0.49 would be predicted, given the $K_a$ in this system (Tsui $\&$ Mark, 1976). 
+The reason why the results for this model are similar to the basic model is because the probability of lysogeny varies so little with respect to the phage concentration; with 0 phages, the probability of lysogeny from this model is slightly below 0.35725; increasing the phage concentration drastically to over 6,000,000 phages/mL only increases the probability of lysogeny by about 0.01. It is likely that the majority of infections at any time point with the conditions possible in this system involve only 1 coinfecting phage, but perhaps it is possible in other systems to have significant differences in the probability of lysogeny due to coinfections. For example, if $10^8$ bacteria/mL (approximately the concentration of stationary phase bacteria) were infected in a laboratory setting with $10^9$ phages/mL, a significant increase in $\phi$ to 0.49 would be predicted, given the $K_a$ in this system (Tsui $\&$ Mark, 1976). 
 
 \section{Notes}
-The majority of the code for this project was written in R. The differentials were numerically integrated using deSolve, and the results were plotted using ggplot. My estimated value for K was determined through curve-fitting using the SciPy library in Python, allowing me to trust the value found in the literature. Equilibrium estimates were generated using Maple (see Maple worksheet). Code for the project (which includes the parameters used to generate the representative plots and the parameter estimate of the Hill function) can be found here. \url{https://github.com/Apeirogons/3BM6-Modelling/tree/master/temperate_phage_modelling/scripts}. 
+The majority of the code for this project was written in R. The differentials were numerically integrated using deSolve, and the results were plotted using ggplot. My estimated value for K was determined through curve-fitting using the SciPy library in Python, confirming the value of K found in the literature. Equilibrium estimates were generated using Maple (see Maple worksheet). Code for the project (which includes the parameters used to generate the representative plots and the parameter estimate of the Hill function) can be found here. \url{https://github.com/Apeirogons/3BM6-Modelling/tree/master/temperate_phage_modelling/scripts}. 
 
 \section{References}
 
