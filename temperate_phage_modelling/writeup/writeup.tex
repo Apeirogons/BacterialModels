@@ -71,6 +71,8 @@ Explanations can be found in [2.6].
 \subsection{Model Equations}
 Explanations for each term and parameter choices may be found in later sections. 
 
+JD: It's not clear what goes in this section or how it relates to other stuff. The stuff at the beginning is not differentials at any rate.
+
 $
 m(R, H) = \underbrace{\frac{R}{R+H}}_{\text{Proportion of maximal growth rate [2.2]}} \\ \\
 q(R, \eta) = \underbrace{\frac{1}{R\eta+1}}_{\text{Proportion of maximal death rate [2.3]}}\\ \\
@@ -123,6 +125,8 @@ If given an initial amount of resource, the growth function produces a sigmoid-s
 \subsection{Bacterial death}
 Bacteria should have a death rate, which monotonically decreases with the resource concentration. In an ecosystem, bacteria can die in many ways unrelated to phages, but it may be possible that resource deprivation would increase this rate of death as they would be less likely to be able to adapt to their environment with low energy. 
 
+JD: In fact, many bacteria do seem to decrease their death rate at low resources, by doing the stationary thing. I guess it depends in part what you mean by the natural death rate, but it might be OK to just say less about this. It's a reasonable assumption, but may not be the only reasonable assumption.
+
 A convenient function for a bacterial death function related to resource deprivation might be related to bacterial growth in the Monod growth function, due to the link between bacterial death and resource concentration. However, instead of the growth rate increasing with increased resource, we have the death rate decreasing with increased resource.
 
 The proportion of the maximal death rate achieved will be represented by 1-m (as this is bounded between 0 and 1, and decreases the death rate with increasing resource). However, the death equation is reformulated to assume constant rates of bacterial death, due to the simplicity afforded by setting the death rate to a constant number.
@@ -169,6 +173,8 @@ All parameters which were not arbitrarily set are sampled from a lognormal distr
 \subsubsection{Intuition}
 The probability of lysogeny in phage $\lambda$ is known to increase when the bacterium is infected by multiple phages at once (Zeng et al., 2010). One reasonable assumption to model this is that the number of phages infecting a bacterium is Poisson distributed with mean equal to $K_aP$ (Figliozzi et al., 2016). This way, the interpretation of the Poisson distribution is the probability that one given bacteria will be infected with N coinfecting phages. Additionally, we will require a function mapping the number of coinfecting phages to a probability of lysogeny.
 
+JD: There's a weird time window thing going on here. Part of your model is instantaneous (ODEs), and part imagines that some number of phages infect a bacterium "simultaneously". I'm kind of thinking there's a better way.
+
 \subsubsection{Model building}
 For this MOI model, a time scale important to viral replication must be used. Therefore, a time scale equal to 1/10th of the lysis time of phage $\lambda$, equal to 4.5 minutes, was chosen (Ryan $\&$ Rutenberg, 2007). This selection of 1/10th of the lysis time has been used in other modelling studies (Mitarai et al., 2016). 
 
@@ -196,6 +202,8 @@ $\phi = \underbrace{\frac{\sum_{N=1}^{\infty}{p(\lambda, N) \cdot \pi(N)}}{1-p(\
 \end{center}
 
 However, one question remains: What is the form of $\pi(N)$? Fortunately, the literature suggests that the form is a Hill function, therefore following the following form suggested by Zeng et al. 
+
+JD: Did you ever figure out why they present the equation in such a weird way?
 
 \begin{center}
 $\pi(N) = \frac{Nh}{Nh + Kh}$
@@ -389,7 +397,6 @@ As mentioned in section 4.1, the equilibrium resource and bacterial concentratio
 R = \frac{HD_B}{V - D_B}, \\ U = \frac{i}{eD_B}
 \end{split}
 \end{equation}
-
 
 
 For example, after 10000 hours, the bacterial concentration is 245.9 x1000 bacteria/mL and the resource concentration is 0.01283 ng/mL. This is equal to the theoretical concentrations predicted by the previous equations to 4 significant digits.
