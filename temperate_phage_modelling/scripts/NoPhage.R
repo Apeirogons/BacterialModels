@@ -65,12 +65,11 @@ ggplot(out, aes(time))+geom_line(aes(y=U/1000, color='Bacteria'), color='RED') +
 ggplot(out, aes(time))+geom_line(aes(y=R*1e+9, color='Resource'),  color='PURPLE') +labs(title='Resource Concentration vs Time', x='Time (hr)', y='Glucose Concentration (ng/mL)') + coord_trans(y="log10")+ theme_bw() 
 
 # Zoom on t=1000 for resource and bacteria.
-i = i*2
-times <- seq(0,to=1000,by=1)
-initials <- c(U=1, R=R_0, P=0, L=0)
-out_1 = as.data.frame(ode(func=f, y=initials, parms =c(MOI=0),times = times))
+ggplot(out[0:1000,], aes(time))+geom_line(aes(y=U/1000, color='Bacteria'), color='RED') +labs(title='Bacterial Concentration vs Time', x='Time (hr)', y='Bacterial Concentration (x 1000 bacteria/mL)') +theme_bw()  
+ggplot(out[0:1000,], aes(time))+geom_line(aes(y=R*1e+9, color='Resource'), color='PURPLE') +labs(title='Resource Concentration vs Time', x='Time (hr)', y='Glucose Concentration (ng/mL)') + coord_trans(y="log10")+ theme_bw() 
 
-ggplot(out_1, aes(time))+geom_line(aes(y=U/1000, color='Bacteria'), color='RED') +labs(title='Bacterial Concentration vs Time', x='Time (hr)', y='Bacterial Concentration (x 1000 bacteria/mL)') +theme_bw()  
-ggplot(out_1, aes(time))+geom_line(aes(y=R*1e+9, color='Resource'), color='PURPLE') +labs(title='Resource Concentration vs Time', x='Time (hr)', y='Glucose Concentration (ng/mL)') + coord_trans(y="log10")+ theme_bw() 
+# Zoom on t=10000 for resource and bacteria.
+ggplot(out[9995:10010,], aes(time))+geom_line(aes(y=U/1000, color='Bacteria'), color='RED') +labs(title='Bacterial Concentration vs Time', x='Time (hr)', y='Bacterial Concentration (x 1000 bacteria/mL)') +theme_bw()  
+ggplot(out[9995:10010,], aes(time))+geom_line(aes(y=R*1e+9, color='Resource'),  color='PURPLE') +labs(title='Resource Concentration vs Time', x='Time (hr)', y='Glucose Concentration (ng/mL)') + coord_trans(y="log10")+ theme_bw() 
 
 

@@ -68,7 +68,8 @@ Explanations can be found in [2.6].
 \end{itemize}
 
 
-\subsection{Differentials}
+\subsection{Model Equations}
+Explanations for each term and parameter choices may be found in later sections. 
 
 $
 m(R, H) = \underbrace{\frac{R}{R+H}}_{\text{Proportion of maximal growth rate [2.2]}} \\ \\
@@ -120,7 +121,7 @@ Looking at $\frac{dB}{dt}$, it is clear that this function represents the propor
 If given an initial amount of resource, the growth function produces a sigmoid-shaped bacterial growth curve with respect to time, which is expected. However, this population saturation is due to the growth rate vanishing to zero as resources are used. In general, the Monod model cannot capture bacterial death.
 
 \subsection{Bacterial death}
-Bacteria should have a natural death rate, which monotonically decreases with the resource concentration. In an ecosystem, bacteria can die in many ways unrelated to phages, but it is likely that resource deprivation would decrease this rate of death as they would be less likely to be able to adapt to their environment with low energy. 
+Bacteria should have a death rate, which monotonically decreases with the resource concentration. In an ecosystem, bacteria can die in many ways unrelated to phages, but it may be possible that resource deprivation would increase this rate of death as they would be less likely to be able to adapt to their environment with low energy. 
 
 A convenient function for a bacterial death function related to resource deprivation might be related to bacterial growth in the Monod growth function, due to the link between bacterial death and resource concentration. However, instead of the growth rate increasing with increased resource, we have the death rate decreasing with increased resource.
 
@@ -161,7 +162,7 @@ Each free component of the ecosystem may be subject to dilution over time. This 
 
 \subsection{Parameter Sampling}
 
-All parameters which were not arbitrarily set are sampled from a log-uniform distribution (random variable with logarithm that is uniformly distributed). The mean of this distribution is set to the mean of the logarithms of upper and lower bounds found in the literature, while the standard deviation of the distribution is set to the (upper bound - mean)/2, meaning that the parameter falls between the two bounds 95$\%$ of the time. This method ensures that the probability density function is continuous, unlike the uniform distribution, while still only allowing the sampling of non-negative parameters. Additionally, it allows exploration of parameters whose upper and lower bounds are different by several orders of magnitude. However, the arbitrary choice of the mean for the log-uniform distribution from the upper and lower bounds may be incorrect.
+All parameters which were not arbitrarily set are sampled from a lognormal distribution (random variable with logarithm that is uniformly distributed). The mean of this distribution is set to the mean of the logarithms of upper and lower bounds found in the literature, while the standard deviation of the distribution is set to the (upper bound - mean)/2, meaning that the parameter falls between the two bounds 95$\%$ of the time. This method ensures that the probability density function is continuous, unlike the uniform distribution, while still only allowing the sampling of non-negative parameters. Additionally, it allows exploration of parameters whose upper and lower bounds are different by several orders of magnitude. However, the arbitrary choice of the mean for the log-uniform distribution from the upper and lower bounds may be incorrect.
 
 \section{Modifications to the basic model}
 \subsection{Multiplicity of infection}
@@ -389,6 +390,8 @@ R = \frac{HD_B}{V - D_B}, \\ U = \frac{i}{eD_B}
 \end{split}
 \end{equation}
 
+
+
 For example, after 10000 hours, the bacterial concentration is 245.9 x1000 bacteria/mL and the resource concentration is 0.01283 ng/mL. This is equal to the theoretical concentrations predicted by the previous equations to 4 significant digits.
 
 \subsubsection{Initial growth}
@@ -398,17 +401,24 @@ For example, after 10000 hours, the bacterial concentration is 245.9 x1000 bacte
 
 Resources typically increase for the first part of the curve due to the constant infusion rate (and low bacterial utilization), reach a peak, then level off. While the resource concentration is increasing, the bacterial concentration is concave up (as $\frac{R}{R+H}$ in $\frac{dR}{dt}$ increases with increased R), and the rest of the graph is concave down for analogous reasons. 
 
+\subsubsection{Perturbation: increase in resources}
+
 \begin{center}
 \includegraphics[scale=0.5]{plots/NoPhage_U_perturbed.png}
 
 \includegraphics[scale=0.5]{plots/NoPhage_R_perturbed.png}
+
+\includegraphics[scale=0.75]{plots/NoPhage_U_perturbed_zoomed.png}
+
+\includegraphics[scale=0.75]{plots/NoPhage_R_perturbed_zoomed.png}
 \end{center}
 
-\subsubsection{Perturbation: increase in resources}
+
 The model also reacts to perturbations. In this example, I have increased the resource level by 500 ng/mL at t=10000. This should theoretically temporarily increase the bacterial population by (500 ng/mL)/$e$, which is about 200 $\times$ 1000 bacteria/mL. This increase of 200 $\times$ 1000 bacteria/mL is reflected in the peak of the bacterial concentration graph, which is about 200 units higher than it was at t=10000. This increased resource utilization due to a higher population to causes the glucose concentration to temporarily fall below the normal equilibrium, but bacteria die until the carrying capacity is achieved once again. 
 
-\begin{center}
 \subsubsection{Perturbation: decrease in infusion rate}
+
+\begin{center}
 
 \includegraphics[scale=0.5]{plots/NoPhage_U_perturbed_down.png}
 
@@ -466,6 +476,25 @@ The reason why the results for this model are similar to the basic model is beca
 \section{Notes}
 The majority of the code for this project was written in R. The differentials were numerically integrated using deSolve, and the results were plotted using ggplot. My estimated value for K was determined through curve-fitting using the SciPy library in Python, confirming the value of K found in the literature. Equilibrium estimates were generated using Maple (see Maple worksheet). Code for the project (which includes the parameters used to generate the representative plots and the parameter estimate of the Hill function) can be found here. \url{https://github.com/Apeirogons/3BM6-Modelling/tree/master/temperate_phage_modelling/scripts}. 
 
+\section{Edits}
+
+\begin{itemize}
+    \item Changed section 1.3 name from Differentials to Model Equations.
+        \subitem JD: It's not clear what goes in this section or how it relates to other stuff. The stuff at the beginning is not differentials at any rate.
+    \item Some fixes in section 2.3. After thinking about stationary phase, the validity of the assumption is probably questionable. I was probably mistaken to not just change my current term to a constant death rate, considering I set it to a constant death rate for the rest of the paper. 
+        \subitem JD: In fact, many bacteria do seem to decrease their death rate at low resources, by doing the stationary thing. I guess it depends in part what you mean by the natural death rate, but it might be OK to just say less about this. It's a reasonable assumption, but may not be the only reasonable assumption.
+    \item  2.7. I meant lognormal, and I fixed the issue.
+        \subitem JD: This seems to be a hybrid explanation (you say log-uniform but seem to describe something else, maybe lognormal).
+    \item 3.1.1. Thinking about it more, I think that a more rigorous approach might be related to my old solution to adding lysis time (i.e. through time delay differentials). Essentially, upon first infection, a bacterium would have 1/10th of its lysis time to accumulate additional coinfecting phages, after which the phages would make their lysis-lysogeny decision. This is at least, more conceptually clear. With this approach, I conceptually focused too much on the numerical integration of the ODEs (as a conceptual example, if all the ODEs are simulated with a $\Delta$t of 4.5 minutes, then my Poisson model calculates number of coinfecting phages within 4.5 minutes, and everything works out fine (I think?))
+        \subitem JD: There's a weird time window thing going on here. Part of your model is instantaneous (ODEs), and part imagines that some number of phages infect a bacterium "simultaneously". I'm kind of thinking there's a better way.
+    \item 3.1.2
+        \subitem JD: Did you ever figure out why they present the equation in such a weird way?
+    \item 6.1.1. I was wondering if that was a problem outside laboratory conditions. I think the shape of the graph should primarily depend on $H$, so I think this parameter would be worth looking into. Also, I didn't notice this at the time of writing, but the final resource concentrations are much lower than the resource concentrations found in the literature, even though I'm estimating infusion rates from the literature; this probably indicates a deeper problem with the model.
+        \subitem JD: It's worth thinking about why your parameters give you such slow resource dynamics. Is it realistic?
+    \item 6.1.3 Fixed formatting. I chose this time scale because I primarily wanted to show how the perturbations resulted in a return to equilibrium. Nonetheless, I've shown the perturbation on a zoomed scale now.
+        \subitem JD: It would probably be good to show perturbations on a time plot with an x scale that allows you to see the dynamics better. 
+\end{itemize}
+ 
 \section{References}
 
 \begin{enumerate}
