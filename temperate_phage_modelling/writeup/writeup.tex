@@ -71,8 +71,6 @@ Explanations can be found in [2.6].
 \subsection{Model Equations}
 Explanations for each term and parameter choices may be found in later sections. 
 
-JD: It's not clear what goes in this section or how it relates to other stuff. The stuff at the beginning is not differentials at any rate.
-
 $
 m(R, H) = \underbrace{\frac{R}{R+H}}_{\text{Proportion of maximal growth rate [2.2]}} \\ \\
 q(R, \eta) = \underbrace{\frac{1}{R\eta+1}}_{\text{Proportion of maximal death rate [2.3]}}\\ \\
@@ -125,8 +123,6 @@ If given an initial amount of resource, the growth function produces a sigmoid-s
 \subsection{Bacterial death}
 Bacteria should have a death rate, which monotonically decreases with the resource concentration. In an ecosystem, bacteria can die in many ways unrelated to phages, but it may be possible that resource deprivation would increase this rate of death as they would be less likely to be able to adapt to their environment with low energy. 
 
-JD: In fact, many bacteria do seem to decrease their death rate at low resources, by doing the stationary thing. I guess it depends in part what you mean by the natural death rate, but it might be OK to just say less about this. It's a reasonable assumption, but may not be the only reasonable assumption.
-
 A convenient function for a bacterial death function related to resource deprivation might be related to bacterial growth in the Monod growth function, due to the link between bacterial death and resource concentration. However, instead of the growth rate increasing with increased resource, we have the death rate decreasing with increased resource.
 
 The proportion of the maximal death rate achieved will be represented by 1-m (as this is bounded between 0 and 1, and decreases the death rate with increasing resource). However, the death equation is reformulated to assume constant rates of bacterial death, due to the simplicity afforded by setting the death rate to a constant number.
@@ -173,8 +169,6 @@ All parameters which were not arbitrarily set are sampled from a lognormal distr
 \subsubsection{Intuition}
 The probability of lysogeny in phage $\lambda$ is known to increase when the bacterium is infected by multiple phages at once (Zeng et al., 2010). One reasonable assumption to model this is that the number of phages infecting a bacterium is Poisson distributed with mean equal to $K_aP$ (Figliozzi et al., 2016). This way, the interpretation of the Poisson distribution is the probability that one given bacteria will be infected with N coinfecting phages. Additionally, we will require a function mapping the number of coinfecting phages to a probability of lysogeny.
 
-JD: There's a weird time window thing going on here. Part of your model is instantaneous (ODEs), and part imagines that some number of phages infect a bacterium "simultaneously". I'm kind of thinking there's a better way.
-
 \subsubsection{Model building}
 For this MOI model, a time scale important to viral replication must be used. Therefore, a time scale equal to 1/10th of the lysis time of phage $\lambda$, equal to 4.5 minutes, was chosen (Ryan $\&$ Rutenberg, 2007). This selection of 1/10th of the lysis time has been used in other modelling studies (Mitarai et al., 2016). 
 
@@ -202,8 +196,6 @@ $\phi = \underbrace{\frac{\sum_{N=1}^{\infty}{p(\lambda, N) \cdot \pi(N)}}{1-p(\
 \end{center}
 
 However, one question remains: What is the form of $\pi(N)$? Fortunately, the literature suggests that the form is a Hill function, therefore following the following form suggested by Zeng et al. 
-
-JD: Did you ever figure out why they present the equation in such a weird way?
 
 \begin{center}
 $\pi(N) = \frac{Nh}{Nh + Kh}$
@@ -399,6 +391,7 @@ R = \frac{HD_B}{V - D_B}, \\ U = \frac{i}{eD_B}
 \end{equation}
 
 
+
 For example, after 10000 hours, the bacterial concentration is 245.9 x1000 bacteria/mL and the resource concentration is 0.01283 ng/mL. This is equal to the theoretical concentrations predicted by the previous equations to 4 significant digits.
 
 \subsubsection{Initial growth}
@@ -494,7 +487,7 @@ The majority of the code for this project was written in R. The differentials we
         \subitem JD: This seems to be a hybrid explanation (you say log-uniform but seem to describe something else, maybe lognormal).
     \item 3.1.1. Thinking about it more, I think that a more rigorous approach might be related to my old solution to adding lysis time (i.e. through time delay differentials). Essentially, upon first infection, a bacterium would have 1/10th of its lysis time to accumulate additional coinfecting phages, after which the phages would make their lysis-lysogeny decision. This is at least, more conceptually clear. With this approach, I conceptually focused too much on the numerical integration of the ODEs (as a conceptual example, if all the ODEs are simulated with a $\Delta$t of 4.5 minutes, then my Poisson model calculates number of coinfecting phages within 4.5 minutes, and everything works out fine (I think?))
         \subitem JD: There's a weird time window thing going on here. Part of your model is instantaneous (ODEs), and part imagines that some number of phages infect a bacterium "simultaneously". I'm kind of thinking there's a better way.
-    \item 3.1.2
+    \item 3.1.2 No. The explanation they gave was "The Hill coefficient h can then be used as a phenomenological indicator for the decision precision: the range of input parameters $\Delta$m for which both fates can be observed is proportional to 1/h"... I don't understand how that could possibly be relevant if h cancels out. However, I did trust the value of K they got, because I went and fitted the function myself. 
         \subitem JD: Did you ever figure out why they present the equation in such a weird way?
     \item 6.1.1. I was wondering if that was a problem outside laboratory conditions. I think the shape of the graph should primarily depend on $H$, so I think this parameter would be worth looking into. Also, I didn't notice this at the time of writing, but the final resource concentrations are much lower than the resource concentrations found in the literature, even though I'm estimating infusion rates from the literature; this probably indicates a deeper problem with the model.
         \subitem JD: It's worth thinking about why your parameters give you such slow resource dynamics. Is it realistic?
